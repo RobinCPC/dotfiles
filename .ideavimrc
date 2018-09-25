@@ -1,0 +1,9 @@
+"====================
+" Hotkey Setting for Pycharm Vim plugin
+"====================
+
+" I can type :help on my own.
+noremap <F1> <ESC>
+" A quick way from Insert to Normal (also can use <C-[>)
+inoremap jk <ESC>
+

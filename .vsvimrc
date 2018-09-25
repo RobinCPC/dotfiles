@@ -1,0 +1,40 @@
+"================================
+" Hotkey Setting For Visual Studio 2015 VsVim plugin
+"================================
+" gd Already map to GoToDefinition.
+nnoremap gi :vsc Edit.GoToImplementation<CR>
+nnoremap gr :vsc Edit.FindAllReferences<CR>
+nnoremap gp :vsc Edit.PeekDefinition<CR>
+nnoremap gb :vsc View.NavigateBackward<CR>
+
+inoremap jk <ESC>
+
+" Extra
+let mapleader="\<Space>"    " set `space` key as leader
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+
+" Smart way to move between windows
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
+
+
+"" break out of the tyranny of text! Navigate by method
+"nnoremap <leader>m :vsc Edit.NextMethod<cr>
+"nnoremap <leader>M :vsc Edit.PreviousMethod<cr>
+"
+"nnoremap R :vsc Refactor.Rename<cr>
+"
+"" jump between compilation errors
+"nnoremap <leader>e :vsc View.NextError<cr>
+"nnoremap <leader>E :vsc View.PreviousError<cr>
+"
+"" testing and debugging
+"nnoremap <leader>b :vsc Debug.ToggleBreakpoint<cr>
+"nnoremap <leader>r :vsc TestExplorer.RunAllTestsInContext<cr>
+"nnoremap <leader>R :vsc TestExplorer.DebugAllTestsInContext<cr>
+"
+"" open the change parameter window, a bit fake because it's not a text-object
+"nnoremap cia :vsc Refactor.ReorderParameters<cr>
