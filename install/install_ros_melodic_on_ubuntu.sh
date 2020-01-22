@@ -1,35 +1,35 @@
 #!/bin/bash
 # -------------------------------------------------------------------------
 # Source: https://gist.github.com/bugra-derre/2fcfb0b77d94031e7446838f4d4f2084
-# [Bugra]  install_ros_kinetic_on_ubuntu.sh
-#          An installation script to install ROS on top of Ubuntu Xenial.
+# [Bugra]  install_ros_melodic_on_ubuntu.sh
+#          An installation script to install ROS on top of Ubuntu Bionic.
 # -------------------------------------------------------------------------
 doTheInstallation() {
     # setup my sources.list
     sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
     # set up your keys
-    sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+    sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
     # installation
     sudo apt-get update
     if ( [ "$OPTARG" == "server" ] || [ "$OPTARG" == "s" ] ); then
-        sudo apt-get install ros-kinetic-ros-base
+        sudo apt-get install ros-melodic-ros-base
         echo "install server version. no GUI tools" $OPTARG >&2
     elif ( [ "$OPTARG" == "desktop" ] || [ "$OPTARG" == "d" ] ); then
-        sudo apt-get install ros-kinetic-desktop-full
+        sudo apt-get install ros-melodic-desktop-full
         echo "install desktop version. with rviz, rqt" $OPTARG >&2
     else
         echo "Wrong argument. Must be either (s)erver or (d)esktop" >&2
         exit 1
     fi
     # install your individual packages here, e.g.
-    # apt-get install ros-kinetic-YOURPACKAGE
+    # apt-get install ros-melodic-YOURPACKAGE
     # find available packages with
-    # apt-cache search ros-kinetic
+    # apt-cache search ros-melodic
     # init rosdep
     sudo rosdep init
     rosdep update
     # environment setup
-    echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+    echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
     source ~/.bashrc
     # get rosinstall,  catkin_tools and other tools
     sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential python-catkin-tools
@@ -38,9 +38,9 @@ doTheInstallation() {
 isCorrectUbuntuDistribution() {
     distrib_id= sudo cat /etc/lsb-release | grep DISTRIB_ID | sed 's/.*ID=//'
     distrib_release= sudo cat /etc/lsb-release | grep DISTRIB_RELEASE | sed 's/.*RELEASE=//'
-    if ( ! [ "$distrib_id"="Ubuntu" ] && [ "$distrib_release"="16.04" ] )
+    if ( ! [ "$distrib_id"="Ubuntu" ] && [ "$distrib_release"="18.04" ] )
     then
-        echo "Wrong distribution. Must be Ubuntu Xenial 16.04." >&2
+        echo "Wrong distribution. Must be Ubuntu Bionic 18.04." >&2
         exit 1
     fi
 }
@@ -48,7 +48,7 @@ isCorrectUbuntuDistribution() {
 isReleaseInformationAvailable() {
     if ( ! [ -e "/etc/lsb-release" ] && [ -f "/etc/lsb-release" ] )
     then
-        echo "file /etc/lsb-release does not exist. Wrong distribution. Must be Ubuntu Xenial 16.04." >&2
+        echo "file /etc/lsb-release does not exist. Wrong distribution. Must be Ubuntu Bionic 18.04." >&2
         exit 1
     fi
 }
@@ -61,7 +61,7 @@ beginInstallation() {
 
 printUsage() {
     echo "Usage: $0 [OPTION]..." >&2
-    echo "Install ROS on Ubuntu Xenial 16.04."
+    echo "Install ROS on Ubuntu Bionic 18.04."
     echo -e "\n  -m\t select installation mode, either (s)erver or (d)esktop. This option is mandatory."
     echo -e "  -h\t display help"
     echo -e "\nExamples:"
