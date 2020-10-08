@@ -25,14 +25,14 @@ doTheInstallation() {
     # apt-get install ros-melodic-YOURPACKAGE
     # find available packages with
     # apt-cache search ros-melodic
-    # init rosdep
+    # get rosdep, rosinstall,  catkin_tools and other tools
+    sudo apt-get install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential python-catkin-tools
+    # initialize rosdep
     sudo rosdep init
     rosdep update
     # environment setup
     echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
     source ~/.bashrc
-    # get rosinstall,  catkin_tools and other tools
-    sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential python-catkin-tools
 }
 
 isCorrectUbuntuDistribution() {
